@@ -97,55 +97,23 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
                    const cv::Mat& desc, bool save_desc) {
 
   int nkpts = 0, dsize = 0;
-  float sc = 0.0;
-
   nkpts = (int)(kpts.size());
   dsize = (int)(desc.cols);
-
   ofstream ipfile(outFile.c_str());
-
+//    desc.at<unsigned char>(0, 1) = desc.at<unsigned char>(0, 0);
+//    unsigned char* ds = desc.ptr<unsigned char>(0); 
   if (!ipfile) {
     cerr << "Couldn't open file '" << outFile << "'!" << endl;
     return -1;
   }
-
-  if (!save_desc) {
-    ipfile << 1 << endl << nkpts << endl;
-  }
-  else {
-    ipfile << dsize << endl << nkpts << endl;
-  }
-
-  // Save interest point with descriptor in the format of Krystian Mikolajczyk
-  // for reasons of comparison with other descriptors
   for (int i = 0; i < nkpts; i++) {
-    // Radius of the keypoint
-    sc = (kpts[i].size);
-    sc*=sc;
-
-    ipfile  << kpts[i].pt.x /* x-location of the interest point */
-            << " " << kpts[i].pt.y /* y-location of the interest point */
-            << " " << 1.0/sc /* 1/r^2 */
-            << " " << 0.0
-            << " " << 1.0/sc; /* 1/r^2 */
-
-    // Here comes the descriptor
+    ipfile << kpts[i].response;
     for( int j = 0; j < dsize; j++) {
-      if (desc.type() == 0) {
         ipfile << " " << (int)(desc.at<unsigned char>(i,j));
-      }
-      else {
-        ipfile << " " << (desc.at<float>(i,j));
-      }
     }
-
     ipfile << endl;
   }
-
-
-  // Close the txt file
   ipfile.close();
-
   return 0;
 }
 
