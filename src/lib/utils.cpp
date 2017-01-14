@@ -94,7 +94,7 @@ void draw_keypoints(cv::Mat& img, const std::vector<cv::KeyPoint>& kpts) {
 
 /* ************************************************************************* */
 int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
-                   const cv::Mat& desc) {
+                   const cv::Mat& desc, int width, int height) {
 
   int nkpts = 0, dsize = 0;
   nkpts = (int)(kpts.size());
@@ -104,6 +104,7 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
     cerr << "Couldn't open file '" << outFile << "'!" << endl;
     return -1;
   }
+  ipfile << "{\"width\":" << width << ", \"height\":" << height << ", \"points\": [";
   ipfile << "[";
   for (int i = 0; i < nkpts; i++) {
     if (i > 0) ipfile << ",";
@@ -117,7 +118,7 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
     }
     ipfile << "]}";
   }
-  ipfile << "]";
+  ipfile << "]}";
   ipfile.close();
   return 0;
 }

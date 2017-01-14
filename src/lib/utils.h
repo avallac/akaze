@@ -59,7 +59,7 @@ void draw_keypoints(cv::Mat& img, const std::vector<cv::KeyPoint>& kpts);
 /// @param outFile Name of the output file where the points will be stored
 /// @param kpts Vector of points of interest
 /// @param desc Matrix that contains the extracted descriptors
-int save_keypoints(const std::string& outFile, const std::vector<cv::KeyPoint>& kpts, const cv::Mat& desc);
+int save_keypoints(const std::string& outFile, const std::vector<cv::KeyPoint>& kpts, const cv::Mat& desc, int width, int height);
 
 /// This function converts matches to points using nearest neighbor distance
 /// ratio matching strategy
