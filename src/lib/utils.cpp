@@ -105,7 +105,6 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
     return -1;
   }
   ipfile << "{\"width\":" << width << ", \"height\":" << height << ", \"points\": [";
-  ipfile << "[";
   for (int i = 0; i < nkpts; i++) {
     if (i > 0) ipfile << ",";
     ipfile << "{\"resp\":" << kpts[i].response << ",";
