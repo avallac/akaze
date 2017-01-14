@@ -117,6 +117,7 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
     }
     ipfile << "]}";
   }
+  ipfile << "]";
   ipfile.close();
   return 0;
 }
