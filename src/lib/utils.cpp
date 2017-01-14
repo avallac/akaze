@@ -104,10 +104,10 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
     cerr << "Couldn't open file '" << outFile << "'!" << endl;
     return -1;
   }
-  ipfile << "[{";
+  ipfile << "[";
   for (int i = 0; i < nkpts; i++) {
     if (i > 0) ipfile << ",";
-    ipfile << "\"resp\":" << kpts[i].response << ",";
+    ipfile << "{\"resp\":" << kpts[i].response << ",";
     ipfile << "\"x\":" << kpts[i].pt.x << ",";
     ipfile << "\"y\":" << kpts[i].pt.y << ",";
     ipfile << "\"desc\": [";
@@ -115,7 +115,7 @@ int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
         if (j > 0) ipfile << ",";
         ipfile << (int)(desc.at<unsigned char>(i,j));
     }
-    ipfile << "0]}";
+    ipfile << "]}";
   }
   ipfile.close();
   return 0;
