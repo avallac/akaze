@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
 
   // Save keypoints in ASCII format
   if (!kpts_path.empty())
-    save_keypoints(kpts_path, kpts, desc, true);
+    save_keypoints(kpts_path, kpts, desc);
 }
 
 /* ************************************************************************* */

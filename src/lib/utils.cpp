@@ -94,24 +94,28 @@ void draw_keypoints(cv::Mat& img, const std::vector<cv::KeyPoint>& kpts) {
 
 /* ************************************************************************* */
 int save_keypoints(const string& outFile, const std::vector<cv::KeyPoint>& kpts,
-                   const cv::Mat& desc, bool save_desc) {
+                   const cv::Mat& desc) {
 
   int nkpts = 0, dsize = 0;
   nkpts = (int)(kpts.size());
   dsize = (int)(desc.cols);
   ofstream ipfile(outFile.c_str());
-//    desc.at<unsigned char>(0, 1) = desc.at<unsigned char>(0, 0);
-//    unsigned char* ds = desc.ptr<unsigned char>(0); 
   if (!ipfile) {
     cerr << "Couldn't open file '" << outFile << "'!" << endl;
     return -1;
   }
+  ipfile << "[{";
   for (int i = 0; i < nkpts; i++) {
-    ipfile << kpts[i].response;
+    if (i > 0) ipfile << ",";
+    ipfile << "\"resp\":" << kpts[i].response << ",";
+    ipfile << "\"x\":" << kpts[i].pt.x << ",";
+    ipfile << "\"y\":" << kpts[i].pt.y << ",";
+    ipfile << "\"desc\": [";
     for( int j = 0; j < dsize; j++) {
-        ipfile << " " << (int)(desc.at<unsigned char>(i,j));
+        if (j > 0) ipfile << ",";
+        ipfile << (int)(desc.at<unsigned char>(i,j));
     }
-    ipfile << endl;
+    ipfile << "0]}";
   }
   ipfile.close();
   return 0;

@@ -49,14 +49,6 @@ target_link_libraries(AKAZE ${OpenCV_LIBS})
 add_executable(akaze_features akaze_features.cpp)
 target_link_libraries(akaze_features AKAZE)
 
-# Image matching program
-add_executable(akaze_match akaze_match.cpp)
-target_link_libraries(akaze_match AKAZE)
-
-# Program that compares AKAZE with ORB and BRISK
-add_executable(akaze_compare akaze_compare.cpp)
-target_link_libraries(akaze_compare AKAZE)
-
 # ============================================================================ #
 # Library installation
 install(TARGETS AKAZE DESTINATION ${AKAZE_INSTALL_PREFIX})
