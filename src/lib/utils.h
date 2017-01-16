@@ -79,8 +79,8 @@ void matches2points_nndr(const std::vector<cv::KeyPoint>& train,
 /// @param inliers Vector of inliers
 /// @param error The minimum pixelic error to accept an inlier
 /// @param use_fund Set to true if you want to compute a fundamental matrix
-void compute_inliers_ransac(const std::vector<cv::Point2f>& matches,
-                            std::vector<cv::Point2f>& inliers, float error, bool use_fund);
+/*void compute_inliers_ransac(const std::vector<cv::Point2f>& matches,
+                            std::vector<cv::Point2f>& inliers, float error, bool use_fund);*/
 
 /// This function computes the set of inliers given a ground truth homography
 /// @param matches Vector of putative matches

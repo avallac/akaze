@@ -22,7 +22,7 @@
 #include "utils.h"
 
 // OpenCV
-#include <opencv2/calib3d.hpp>
+//#include <opencv2/calib3d.hpp>
 #include <opencv2/imgproc.hpp>
 
 // System
@@ -142,7 +142,7 @@ void matches2points_nndr(const std::vector<cv::KeyPoint>& train,
 }
 
 /* ************************************************************************* */
-void compute_inliers_ransac(const std::vector<cv::Point2f>& matches,
+/*void compute_inliers_ransac(const std::vector<cv::Point2f>& matches,
                             std::vector<cv::Point2f>& inliers,
                             float error, bool use_fund) {
 
@@ -169,7 +169,7 @@ void compute_inliers_ransac(const std::vector<cv::Point2f>& matches,
       }
     }
   }
-}
+}*/
 
 /* ************************************************************************* */
 void compute_inliers_homography(const std::vector<cv::Point2f>& matches,
